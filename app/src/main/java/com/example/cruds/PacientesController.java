@@ -27,6 +27,18 @@ public class PacientesController {
         valoresParaInsertar.put("internado", paciente.getInternado());
         return baseDeDatos.insert(NOMBRE_TABLA, null,valoresParaInsertar);
     }
+    public int guardarCambios(Paciente pacienteEditado){
+        SQLiteDatabase baseDeDatos = DBHelper.getWritableDatabase();
+        ContentValues valoresParaActualizar = new ContentValues();
+        valoresParaActualizar.put("nombre",pacienteEditado.getNombre());
+        valoresParaActualizar.put("edad",pacienteEditado.getEdad());
+        valoresParaActualizar.put("internado",pacienteEditado.getInternado());
+
+        String campoParaActualizar = "id = ?";
+
+        String[] argumentosParaActualizar = {String.valueOf(pacienteEditado.getId())};
+        return  baseDeDatos.update(NOMBRE_TABLA,valoresParaActualizar,campoParaActualizar,argumentosParaActualizar);
+    }
 
     public ArrayList<Paciente> obtenerPacientes(){
         ArrayList<Paciente> pacientes = new ArrayList<>();
