@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CRUDS</string>
+
+    <string name="agregar_paciente">Agregar paciente</string>
 </resources>
