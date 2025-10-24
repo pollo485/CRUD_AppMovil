@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import com.example.cruds.DBHelper;
 import com.example.cruds.Paciente;
 
-
 public class PacientesController {
 
     private DBHelper  DBHelper;
@@ -38,6 +37,11 @@ public class PacientesController {
 
         String[] argumentosParaActualizar = {String.valueOf(pacienteEditado.getId())};
         return  baseDeDatos.update(NOMBRE_TABLA,valoresParaActualizar,campoParaActualizar,argumentosParaActualizar);
+    }
+    public int eliminarPaciente(Paciente paciente){
+        SQLiteDatabase baseDeDatos = DBHelper.getWritableDatabase();
+        String[] argumentos = {String.valueOf(paciente.getId())};
+        return baseDeDatos.delete(NOMBRE_TABLA,"id = ?", argumentos);
     }
 
     public ArrayList<Paciente> obtenerPacientes(){
